@@ -3,7 +3,6 @@ class CashRegister
   attr_accessor :total
   def initialize(total = 0)
     @total = total
-    @discount = discount
   end
   def discount
     @discount = 20
@@ -14,11 +13,8 @@ class CashRegister
     @quantity = quantity
     @total += (@price * @quantity)
   end
-
   def apply_discount
-    percent_discount = discount.to_f / 100
-    actual_discount = total * percent_discount
-    @total =  total.to_f - actual_discount
-    @total
+    @total -= (@total * (self.discount)/100)
+
   end
 end
